@@ -3769,33 +3769,197 @@
           <div class="t396__carrier" data-artboard-recid="2440052813"></div>
           <div class="t396__filter" data-artboard-recid="2440052813"></div>
           <div class='t396__elem tn-elem tn-elem__24400528131698640198030' data-elem-id='1698640198030'
-  data-elem-type='html' data-field-top-value="125" data-field-left-value="220" data-field-height-value="450"
+  data-elem-type='html' data-field-top-value="125" data-field-left-value="220" data-field-height-value="400"
   data-field-width-value="361" data-field-axisy-value="top" data-field-axisx-value="left"
   data-field-container-value="grid" data-field-topunits-value="px" data-field-leftunits-value="px"
   data-field-heightunits-value="px" data-field-widthunits-value="px" data-field-top-res-320-value="86"
   data-field-left-res-320-value="0" data-field-width-res-320-value="320">
   <div class='tn-atom tn-atom__html'>
-    <form action="https://formspree.io/f/meajglzg" method="POST" style="display:flex; flex-direction:column; gap:15px; padding:20px; background:#fff; border-radius:20px; border:2px solid #0d4706;">
-      <h3 style="text-align:center; color:#0d4706; margin:0; font-family: Arial, sans-serif;">Тойға келесіз бе?</h3>
-      
-      <input type="text" name="name" placeholder="ЕСІМІҢІЗ" required style="padding:12px; border:2px solid #0d4706; border-radius:10px; font-size:16px; font-family: Arial, sans-serif;">
-      
-      <select name="coming" required style="padding:12px; border:2px solid #0d4706; border-radius:10px; font-size:16px; font-family: Arial, sans-serif;">
-        <option value="">Қалай келесіз?</option>
-        <option value="Әрине, келемін">Әрине, келемін</option>
-        <option value="Жұбайыммен келемін">Жұбайыммен келемін</option>
-        <option value="Келе алмаймын">Өкінішке орай, келе алмаймын</option>
-      </select>
-      
-      <input type="number" name="guests" placeholder="Қанша адам келесіздер?" min="1" required style="padding:12px; border:2px solid #0d4706; border-radius:10px; font-size:16px; font-family: Arial, sans-serif;">
-      
-      <button type="submit" style="padding:15px; background:#0d4706; color:#fff; border:none; border-radius:10px; font-size:18px; font-weight:bold; cursor:pointer; font-family: Arial, sans-serif;">
-        ЖІБЕРУ
-      </button>
-      
-      <input type="hidden" name="_subject" value="Жаңа жауап: Тойға келу">
-      <input type="hidden" name="_captcha" value="true">
-    </form>
+    <style>
+      #formContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 20px;
+        border: 1px solid #1c3404;
+        font-family: Georgia, serif;
+      }
+      #formContainer .field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      #formContainer label {
+        font-size: 16px;
+        color: #1c3404;
+        font-weight: 400;
+        font-family: Georgia, serif;
+      }
+      #formContainer input, 
+      #formContainer select {
+        padding: 12px 15px;
+        border: 1px solid #1c3404;
+        border-radius: 20px;
+        font-size: 15px;
+        color: #1c3404;
+        background: #fff;
+        font-family: Georgia, serif;
+        outline: none;
+        transition: 0.3s;
+      }
+      #formContainer input:focus,
+      #formContainer select:focus {
+        border-color: #0d4706;
+        box-shadow: 0 0 0 3px rgba(13, 71, 6, 0.15);
+      }
+      #formContainer .submit-btn {
+        padding: 15px;
+        background: #1c3404;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: Georgia, serif;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 200px;
+        margin: 0 auto;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      #formContainer .submit-btn:hover {
+        background: #0d4706;
+        transform: scale(1.02);
+      }
+      #formContainer .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+      #formContainer .success-msg {
+        display: none;
+        text-align: center;
+        color: #0d4706;
+        font-size: 18px;
+        font-family: Georgia, serif;
+        padding: 20px;
+        background: #e8f5e9;
+        border-radius: 15px;
+        border: 2px solid #0d4706;
+      }
+      #formContainer .error-msg {
+        display: none;
+        text-align: center;
+        color: #d32f2f;
+        font-size: 14px;
+        font-family: Georgia, serif;
+        padding: 10px;
+        background: #ffebee;
+        border-radius: 10px;
+        border: 1px solid #d32f2f;
+      }
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 5px 0;
+      }
+      .radio-group label {
+        font-size: 15px;
+        color: #1c3404;
+        font-weight: 400;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+      .radio-group input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        accent-color: #1c3404;
+        border: 1px solid #1c3404;
+        border-radius: 50%;
+      }
+    </style>
+
+    <div id="formContainer">
+      <form id="myForm" action="https://formspree.io/f/meajglzg" method="POST">
+        <!-- Поле: Имя -->
+        <div class="field-group">
+          <label>ЕСІМІҢІЗ</label>
+          <input type="text" name="name" placeholder="Аты-жөніңіз" required>
+        </div>
+
+        <!-- Поле: Радио-кнопки (как в Tilda) -->
+        <div class="field-group">
+          <label>Қалай келесіз?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="coming" value="Әрине, келемін" required> Әрине, келемін</label>
+            <label><input type="radio" name="coming" value="Жұбайыммен келемін"> Жұбайыммен келемін</label>
+            <label><input type="radio" name="coming" value="Өкінішке орай, келе алмаймын"> Өкінішке орай, келе алмаймын</label>
+          </div>
+        </div>
+
+        <!-- Поле: Количество гостей -->
+        <div class="field-group">
+          <label>Қанша адам келесіздер?</label>
+          <input type="number" name="guests" placeholder="1" min="1" required>
+        </div>
+
+        <!-- Скрытые поля -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_redirect" value="https://dulat151.github.io/qonaqtarymyz/">
+
+        <!-- Кнопка -->
+        <button type="submit" class="submit-btn" id="submitBtn">ЖІБЕРУ</button>
+        
+        <div id="successMsg" class="success-msg">Рахмет! Жауабыңыз қабылданды!</div>
+        <div id="errorMsg" class="error-msg">Қате кетті. Қайталап көріңіз.</div>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById('myForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Отключаем перезагрузку страницы
+        
+        const form = this;
+        const btn = document.getElementById('submitBtn');
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+        
+        // Скрываем старые сообщения
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+        
+        // Блокируем кнопку
+        btn.disabled = true;
+        btn.textContent = 'ЖІБЕРУ...';
+        
+        // Отправляем данные
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+          if (response.ok) {
+            successMsg.style.display = 'block';
+            form.reset(); // Очищаем форму
+          } else {
+            errorMsg.style.display = 'block';
+          }
+        })
+        .catch(() => {
+          errorMsg.style.display = 'block';
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.textContent = 'ЖІБЕРУ';
+        });
+      });
+    </script>
   </div>
 </div>
           <div class='t396__elem tn-elem tn-elem__24400528131710532254821' data-elem-id='1710532254821'
